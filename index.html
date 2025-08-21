@@ -1,8 +1,21 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>ESL Placement Test</title>
+<meta name="google-site-verification" content="j8wJCiLTFIvrqtx81YIfZVDvnhBW1qAJKeBwV2fFPUo" />
+
+<!-- Meta Tags in English -->
+<meta name="description" content="Free ESL Placement Test. Check your English level from A1 to C2 with this interactive quiz.">
+<meta name="keywords" content="English test, ESL placement, online quiz, English levels, A1, A2, B1, B2, C1, C2">
+<meta name="author" content="Your Name or Website">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Meta Tags in Albanian -->
+<meta name="description" lang="sq" content="Test vendosjeje në anglisht. Kontrollo nivelin tënd të anglishtes nga A1 deri në C2 me këtë quiz interaktiv.">
+<meta name="keywords" lang="sq" content="testo nivelin e gjuhes angleze, test vendosjeje, quiz online, nivelet e anglishtes, A1, A2, B1, B2, C1, C2">
+<meta name="author" content="Emri ose faqja juaj">
+  
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -10,114 +23,219 @@
     background-size: cover;
     margin: 0;
     padding: 0;
-    color: #333;
   }
-  .container {
-    width: 80%;
-    max-width: 700px;
-    margin: 50px auto;
-    background: rgba(255,255,255,0.9);
+  #container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 80px;
+  }
+  #info, #quiz-box, #result {
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-  }
-  h1 {
     text-align: center;
   }
-  label {
+  h2 { margin-bottom: 20px; }
+  .option {
     display: block;
-    margin-top: 15px;
-    font-weight: bold;
+    background: #f0f0f0;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
   }
-  input, textarea, select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+  .option:hover { background: #e0e0e0; }
+  .correct { background: #4CAF50; color: #fff; }
+  .wrong { background: #f44336; color: #fff; }
+  #progress-container {
+    width: 90%;
+    background: #ddd;
+    height: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+  }
+  #progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #4CAF50;
+    border-radius: 10px;
+    transition: width 0.3s;
   }
   button {
-    margin-top: 20px;
-    padding: 12px 20px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 12px 25px;
     font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background: #2193b0;
+    color: white;
+    transition: 0.3s;
+    margin: 5px;
   }
-  button:hover {
-    background: #45a049;
+  button:hover { background: #6dd5ed; color: #000; }
+  #skip-btn {
+    margin-top: 15px;
+    background: #f39c12;
+    color: white;
   }
-  .success {
-    display: none;
-    margin-top: 20px;
-    font-weight: bold;
-    color: green;
-    text-align: center;
+  #skip-btn:hover {
+    background: #e67e22;
+    color: black;
+  }
+  footer, .site-footer {
+    display: none !important;
   }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>ESL Placement Test</h1>
-  <form id="quizForm">
-    <label for="name">Full Name:</label>
-    <input type="text" id="name" name="Name" required>
 
-    <label for="email">Email Address:</label>
-    <input type="email" id="email" name="Email" required>
+<div id="container">
+  <!-- Info / Start screen -->
+  <div id="info">
+    <h2>Welcome to the ESL Placement Test</h2>
+    <p>You will be presented with multiple-choice questions to determine your English level (A1–C2).<br>
+    You can skip questions or move forward, but you cannot go back.<br>
+    Correct answers turn green, incorrect turn red.<br>
+    Your progress will be shown below.<br>
+    Before starting, please enter your name and email:</p>
 
-    <label>1. Choose the correct sentence:</label>
-    <select name="Q1" required>
-      <option value="">-- Select an answer --</option>
-      <option value="She go to school every day.">She go to school every day.</option>
-      <option value="She goes to school every day.">She goes to school every day.</option>
-    </select>
-
-    <label>2. Fill in the blank: I _____ a book yesterday.</label>
-    <select name="Q2" required>
-      <option value="">-- Select an answer --</option>
-      <option value="read">read</option>
-      <option value="reads">reads</option>
-      <option value="reading">reading</option>
-    </select>
-
-    <label>3. What is the opposite of "hot"?</label>
-    <select name="Q3" required>
-      <option value="">-- Select an answer --</option>
-      <option value="cold">cold</option>
-      <option value="warm">warm</option>
-      <option value="cool">cool</option>
-    </select>
-
-    <label>4. Write a short sentence using the word "friend":</label>
-    <textarea name="Q4" rows="3" required></textarea>
-
-    <label>5. Translate into English: "Unë jam student."</label>
-    <input type="text" name="Q5" required>
-
-    <button type="submit">Submit</button>
-  </form>
-  <div class="success" id="successMessage">
-    ✅ Thank you! Your answers have been submitted.
+    <!-- User info form -->
+    <form id="userForm">
+      <input type="text" id="user_name" name="user_name" placeholder="Your Name" required>
+      <input type="email" id="user_email" name="user_email" placeholder="Your Email" required>
+      <button type="submit">Start Quiz</button>
+    </form>
   </div>
+
+  <!-- Quiz box -->
+  <div id="quiz-box" style="display:none;">
+    <div id="question-container"></div>
+    <div id="progress-container"><div id="progress-bar"></div></div>
+    <button id="skip-btn" onclick="skipQuestion()">Skip Question</button>
+  </div>
+
+  <!-- Result box -->
+  <div id="result" style="display:none;"></div>
 </div>
 
-<script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbzqDBSf31qxX5wgvNY6QA5NzOLpIChFUVLnX-n3K8aRM3N9SFg9RaZw7IPdbugcchYK/exec";
-  const form = document.getElementById('quizForm');
-  const successMessage = document.getElementById('successMessage');
+<!-- EmailJS -->
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init('KloCxkZGxIt_lIzYg'); // replace with your EmailJS public key
+  })();
+</script>
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-        form.style.display = 'none';
-        successMessage.style.display = 'block';
-      })
-      .catch(error => alert('Error!' + error.message));
+<script>
+const quizData = [
+  /* YOUR EXISTING QUIZ DATA HERE (unchanged) */
+];
+
+let currentQuestion = 0;
+let score = 0;
+let userName = "";
+let userEmail = "";
+
+const infoBox = document.getElementById("info");
+const quizBox = document.getElementById("quiz-box");
+const questionContainer = document.getElementById("question-container");
+const progressBar = document.getElementById("progress-bar");
+const resultBox = document.getElementById("result");
+const userForm = document.getElementById("userForm");
+
+// When user submits name/email, start quiz
+userForm.addEventListener("submit", function(e){
+  e.preventDefault();
+  userName = document.getElementById("user_name").value;
+  userEmail = document.getElementById("user_email").value;
+  infoBox.style.display = "none";
+  quizBox.style.display = "block";
+  loadQuestion();
+});
+
+// Load each question
+function loadQuestion() {
+  if (currentQuestion >= quizData.length) {
+    quizBox.style.display = "none";
+    showLevel();
+    return;
+  }
+
+  let q = quizData[currentQuestion];
+  questionContainer.innerHTML = `
+    <div class="question">${currentQuestion + 1}. ${q.question}</div>
+    ${q.options.map((opt, i) => `<div class="option" onclick="checkAnswer(${i})">${opt}</div>`).join('')}
+  `;
+}
+
+function checkAnswer(selected) {
+  let q = quizData[currentQuestion];
+  let options = document.querySelectorAll(".option");
+  options.forEach((btn, idx) => {
+    btn.style.pointerEvents = "none";
+    if (idx === q.correct) btn.classList.add("correct");
+    else if (idx === selected) btn.classList.add("wrong");
   });
+  if (selected === q.correct) score++;
+  nextQuestion();
+}
+
+function skipQuestion() {
+  nextQuestion();
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  progressBar.style.width = (currentQuestion / quizData.length * 100) + "%";
+  setTimeout(loadQuestion, 500);
+}
+
+// Show result and send email via EmailJS
+function showLevel() {
+  let percent = (score / quizData.length) * 100;
+  let level;
+  if (percent <= 20) level = "A1 (Beginner)";
+  else if (percent <= 40) level = "A2 (Elementary)";
+  else if (percent <= 60) level = "B1 (Intermediate)";
+  else if (percent <= 80) level = "B2 (Upper-Intermediate)";
+  else if (percent <= 90) level = "C1 (Advanced)";
+  else level = "C2 (Proficient)";
+  
+  resultBox.innerHTML = `
+    🎉 Your English level is: <strong>${level}</strong><br>
+    You answered ${score} out of ${quizData.length} questions correctly.<br><br>
+    <button onclick="restartQuiz()">Restart Quiz</button>
+  `;
+  resultBox.style.display = "block";
+
+  // Send results via EmailJS
+  emailjs.send('service_sc8bjmd', 'KloCxkZGxIt_lIzYg', {
+    user_name: userName,
+    user_email: userEmail,
+    score: score,
+    total_questions: quizData.length,
+    level: level
+  }).then(function(response) {
+    console.log('SUCCESS!', response.status, response.text);
+  }, function(error) {
+    console.log('FAILED...', error);
+  });
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  resultBox.style.display = "none";
+  infoBox.style.display = "block";
+  progressBar.style.width = "0%";
+  document.getElementById("user_name").value = "";
+  document.getElementById("user_email").value = "";
+}
 </script>
 </body>
 </html>
+
