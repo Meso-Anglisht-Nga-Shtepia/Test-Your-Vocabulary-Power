@@ -1,138 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ESL Placement Test</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    .question {
-      margin-bottom: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      background: #4CAF50;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #45a049;
-    }
-    input, select {
-      padding: 8px;
-      width: 100%;
-      margin: 5px 0 15px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>ESL Placement Test</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: url('image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  .container {
+    width: 80%;
+    max-width: 700px;
+    margin: 50px auto;
+    background: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  }
+  h1 {
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button:hover {
+    background: #45a049;
+  }
+  .success {
+    display: none;
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>ESL Placement Test</h1>
+<div class="container">
+  <h1>ESL Placement Test</h1>
+  <form id="quizForm">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="Name" required>
 
-    <!-- User Info -->
-    <div id="user-info">
-      <label>Full Name:</label>
-      <input type="text" id="name" placeholder="Enter your full name" required>
-      <label>Email:</label>
-      <input type="email" id="email" placeholder="Enter your email" required>
-      <button onclick="startQuiz()">Start Quiz</button>
-    </div>
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="Email" required>
 
-    <!-- Quiz -->
-    <div id="quiz" style="display:none;">
-      <div class="question">
-        <p>1. Choose the correct option: "She ___ to school every day."</p>
-        <select id="q1">
-          <option value="">--Select--</option>
-          <option value="go">go</option>
-          <option value="goes">goes</option>
-          <option value="going">going</option>
-        </select>
-      </div>
+    <label>1. Choose the correct sentence:</label>
+    <select name="Q1" required>
+      <option value="">-- Select an answer --</option>
+      <option value="She go to school every day.">She go to school every day.</option>
+      <option value="She goes to school every day.">She goes to school every day.</option>
+    </select>
 
-      <div class="question">
-        <p>2. What’s the opposite of "hot"?</p>
-        <select id="q2">
-          <option value="">--Select--</option>
-          <option value="warm">warm</option>
-          <option value="cold">cold</option>
-          <option value="cool">cool</option>
-        </select>
-      </div>
+    <label>2. Fill in the blank: I _____ a book yesterday.</label>
+    <select name="Q2" required>
+      <option value="">-- Select an answer --</option>
+      <option value="read">read</option>
+      <option value="reads">reads</option>
+      <option value="reading">reading</option>
+    </select>
 
-      <button onclick="submitQuiz()">Submit Answers</button>
-    </div>
+    <label>3. What is the opposite of "hot"?</label>
+    <select name="Q3" required>
+      <option value="">-- Select an answer --</option>
+      <option value="cold">cold</option>
+      <option value="warm">warm</option>
+      <option value="cool">cool</option>
+    </select>
 
-    <!-- Result -->
-    <div id="result" style="display:none;">
-      <h2>Thank you for completing the test!</h2>
-      <p>Your answers have been submitted successfully ✅</p>
-    </div>
+    <label>4. Write a short sentence using the word "friend":</label>
+    <textarea name="Q4" rows="3" required></textarea>
+
+    <label>5. Translate into English: "Unë jam student."</label>
+    <input type="text" name="Q5" required>
+
+    <button type="submit">Submit</button>
+  </form>
+  <div class="success" id="successMessage">
+    ✅ Thank you! Your answers have been submitted.
   </div>
+</div>
 
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzqDBSf31qxX5wgvNY6QA5NzOLpIChFUVLnX-n3K8aRM3N9SFg9RaZw7IPdbugcchYK/exec";
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbzqDBSf31qxX5wgvNY6QA5NzOLpIChFUVLnX-n3K8aRM3N9SFg9RaZw7IPdbugcchYK/exec";
+  const form = document.getElementById('quizForm');
+  const successMessage = document.getElementById('successMessage');
 
-    function startQuiz() {
-      let name = document.getElementById("name").value.trim();
-      let email = document.getElementById("email").value.trim();
-      if (name === "" || email === "") {
-        alert("Please enter your name and email to start.");
-        return;
-      }
-      document.getElementById("user-info").style.display = "none";
-      document.getElementById("quiz").style.display = "block";
-    }
-
-    function submitQuiz() {
-      let name = document.getElementById("name").value;
-      let email = document.getElementById("email").value;
-      let q1 = document.getElementById("q1").value;
-      let q2 = document.getElementById("q2").value;
-
-      if (q1 === "" || q2 === "") {
-        alert("Please answer all questions before submitting.");
-        return;
-      }
-
-      let data = {
-        name: name,
-        email: email,
-        q1: q1,
-        q2: q2
-      };
-
-      fetch(scriptURL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        form.style.display = 'none';
+        successMessage.style.display = 'block';
       })
-      .then(() => {
-        document.getElementById("quiz").style.display = "none";
-        document.getElementById("result").style.display = "block";
-      })
-      .catch(err => console.error("Error:", err));
-    }
-  </script>
+      .catch(error => alert('Error!' + error.message));
+  });
+</script>
 </body>
 </html>
