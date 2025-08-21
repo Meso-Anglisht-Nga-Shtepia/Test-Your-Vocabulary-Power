@@ -174,16 +174,43 @@ function checkAnswer(selected) {
 }
 
 function showLevel() {
-  let percent = (score/quizData.length) * 100;
+  let percent = (score / quizData.length) * 100;
   let level;
-  if(percent <= 20) level = "A1 (Beginner)";
-  else if(percent <= 40) level = "A2 (Elementary)";
-  else if(percent <= 60) level = "B1 (Intermediate)";
-  else if(percent <= 80) level = "B2 (Upper-Intermediate)";
-  else if(percent <= 90) level = "C1 (Advanced)";
+  if (percent <= 20) level = "A1 (Beginner)";
+  else if (percent <= 40) level = "A2 (Elementary)";
+  else if (percent <= 60) level = "B1 (Intermediate)";
+  else if (percent <= 80) level = "B2 (Upper-Intermediate)";
+  else if (percent <= 90) level = "C1 (Advanced)";
   else level = "C2 (Proficient)";
-  resultBox.innerHTML = `🎉 Your English level is: <strong>${level}</strong> (${score}/${quizData.length})`;
+
+  // get user data back from localStorage
+  let userName = localStorage.getItem("quizUserName");
+  let userEmail = localStorage.getItem("quizUserEmail");
+
+  // show result on screen
+  resultBox.innerHTML = `
+    🎉 Your English level is: <strong>${level}</strong> (${score}/${quizData.length})<br><br>
+    👤 Name: <strong>${userName}</strong><br>
+    📧 Email: <strong>${userEmail}</strong>
+  `;
+
+  // send to Google Sheets (replace with your Apps Script URL)
+  let data = {
+    name: userName,
+    email: userEmail,
+    score: score,
+    level: level
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbzqDBSf31qxX5wgvNY6QA5NzOLpIChFUVLnX-n3K8aRM3N9SFg9RaZw7IPdbugcchYK/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.text())
+  .then(res => console.log("Server response:", res))
+  .catch(err => console.error("Error sending data:", err));
 }
 </script>
 </body>
 </html>
+
