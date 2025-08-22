@@ -1,241 +1,309 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>ESL Placement Test</title>
-<meta name="google-site-verification" content="j8wJCiLTFIvrqtx81YIfZVDvnhBW1qAJKeBwV2fFPUo" />
-
-<!-- Meta Tags in English -->
-<meta name="description" content="Free ESL Placement Test. Check your English level from A1 to C2 with this interactive quiz.">
-<meta name="keywords" content="English test, ESL placement, online quiz, English levels, A1, A2, B1, B2, C1, C2">
-<meta name="author" content="Your Name or Website">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Meta Tags in Albanian -->
-<meta name="description" lang="sq" content="Test vendosjeje në anglisht. Kontrollo nivelin tënd të anglishtes nga A1 deri në C2 me këtë quiz interaktiv.">
-<meta name="keywords" lang="sq" content="testo nivelin e gjuhes angleze, test vendosjeje, quiz online, nivelet e anglishtes, A1, A2, B1, B2, C1, C2">
-<meta name="author" content="Emri ose faqja juaj">
-  
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: url('image.jpg') no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-  }
-  #container {
-    max-width: 800px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    overflow: hidden;
-    position: relative;
-    padding-bottom: 80px;
-  }
-  #info, #quiz-box, #result {
-    padding: 30px;
-    text-align: center;
-  }
-  h2 { margin-bottom: 20px; }
-  .option {
-    display: block;
-    background: #f0f0f0;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .option:hover { background: #e0e0e0; }
-  .correct { background: #4CAF50; color: #fff; }
-  .wrong { background: #f44336; color: #fff; }
-  #progress-container {
-    width: 90%;
-    background: #ddd;
-    height: 20px;
-    border-radius: 10px;
-    margin: 20px auto;
-  }
-  #progress-bar {
-    height: 100%;
-    width: 0%;
-    background: #4CAF50;
-    border-radius: 10px;
-    transition: width 0.3s;
-  }
-  button {
-    padding: 12px 25px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    border: none;
-    background: #2193b0;
-    color: white;
-    transition: 0.3s;
-    margin: 5px;
-  }
-  button:hover { background: #6dd5ed; color: #000; }
-  #skip-btn {
-    margin-top: 15px;
-    background: #f39c12;
-    color: white;
-  }
-  #skip-btn:hover {
-    background: #e67e22;
-    color: black;
-  }
-  footer, .site-footer {
-    display: none !important;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESL Vocabulary Sprint — A1 to C2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1226;
+      --card: #161a36;
+      --ink: #e9ecff;
+      --muted:#b8bff5;
+      --accent:#7c8cff;
+      --accent2:#24d3ee;
+      --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background: radial-gradient(1200px 700px at 20% 0%, #1b1f49 0%, var(--bg) 60%), linear-gradient(120deg, #0a0e24 0%, #0f1226 60%); color:var(--ink); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;}
+    a{color:var(--accent2)}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px}
+    .hero{position:relative;overflow:hidden;border-radius:28px;padding:28px;border:1px solid rgba(255,255,255,.08);background: linear-gradient(135deg, rgba(124,140,255,.25), rgba(36,211,238,.15)); box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-weight:600;color:var(--muted);}
+    .title{font-size:clamp(28px,4.2vw,48px);font-weight:800;line-height:1.1;margin:10px 0}
+    .subtitle{color:var(--muted);font-size:clamp(14px,2.2vw,18px);max-width:70ch}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:26px}
+    @media(min-width:960px){.grid{grid-template-columns:1.1fr .9fr}}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+    label{display:block;margin:.6rem 0 .35rem 0;font-weight:600}
+    input, select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:#0e1130;color:var(--ink)}
+    button{cursor:pointer;border:0;border-radius:14px;padding:12px 16px;font-weight:700}
+    .cta{background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#051018;}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--ink)}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--muted);font-size:12px}
+    .q{margin:16px 0;padding:16px;border-radius:16px;background:#0f1542;border:1px solid rgba(255,255,255,.06)}
+    .q h4{margin:0 0 10px 0;font-size:16px}
+    .choices{display:grid;gap:10px}
+    .choices label{font-weight:500}
+    .choices input{width:auto;}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .hidden{display:none}
+    .score{font-size:44px;font-weight:800}
+    .tag{font-weight:800;color:var(--ink);padding:2px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.18)}
+    .A1{background:#0b3a2b;border-color:#1d5e4a}
+    .A2{background:#0b3a17;border-color:#21602b}
+    .B1{background:#143a0b;border-color:#2a600f}
+    .B2{background:#3a2f0b;border-color:#604a12}
+    .C1{background:#3a1b0b;border-color:#60311a}
+    .C2{background:#3a0b30;border-color:#602050}
+    footer{opacity:.7;text-align:center;margin:36px 0 14px}
+    .mini{font-size:12px;color:var(--muted)}
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <section class="hero">
+      <span class="badge">✨ English Vocabulary Test • A1 → C2</span>
+      <h1 class="title">Test your vocabulary power in 10–15 minutes</h1>
+      <p class="subtitle">Log in with your name and email, take up to <strong>18 carefully‑curated questions</strong> (A1 to C2), and instantly see your level. Your name, email, answers, and score are securely sent to a Google Sheet for easy tracking.</p>
+      <div class="grid">
+        <div class="card">
+          <h3 style="margin-top:0">Sign in to begin</h3>
+          <form id="loginForm">
+            <label for="username">Your name</label>
+            <input id="username" name="username" required placeholder="e.g., Anna Petrova" />
+            <label for="email">Email address</label>
+            <input id="email" name="email" required type="email" placeholder="you@example.com" />
+            <div class="row" style="margin-top:12px">
+              <button class="cta" type="submit">Start the quiz</button>
+              <button class="ghost" type="reset">Clear</button>
+            </div>
+            <p class="mini" style="margin-top:10px">By continuing you agree that your answers will be stored for assessment purposes.</p>
+          </form>
+        </div>
+        <div class="card">
+          <p class="pill">💡 Tip</p>
+          <p style="margin-top:8px">Each question has one correct answer. Don’t overthink—go with your first instinct. You can <strong>review and change</strong> answers before submitting.</p>
+          <ul style="margin:.6rem 0 0 1.2rem; padding:0; color:var(--muted)">
+            <li>Levels covered: A1, A2, B1, B2, C1, C2</li>
+            <li>Auto‑score + level band</li>
+            <li>Secure submission to Google Sheets</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<div id="container">
-  <!-- Info / Start screen -->
-  <div id="info">
-    <h2>Welcome to the ESL Placement Test</h2>
-    <p>You will be presented with multiple-choice questions to determine your English level (A1–C2).<br>
-    You can skip questions or move forward, but you cannot go back.<br>
-    Correct answers turn green, incorrect turn red.<br>
-    Your progress will be shown below.<br>
-    Before starting, please enter your name and email:</p>
+    <section id="quizSection" class="hidden" style="margin-top:26px">
+      <div class="card">
+        <div class="row" style="justify-content:space-between;align-items:center">
+          <h3 style="margin:0">Vocabulary Quiz</h3>
+          <span id="userTag" class="pill">👤 </span>
+        </div>
+        <div id="questions"></div>
+        <div class="row" style="margin-top:14px;justify-content:space-between">
+          <button id="backToLogin" class="ghost" type="button">← Back</button>
+          <div class="row">
+            <button id="resetQuiz" class="ghost" type="button">Reset</button>
+            <button id="submitQuiz" class="cta" type="button">Submit answers</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- User info form -->
-    <form id="userForm">
-      <input type="text" id="user_name" name="user_name" placeholder="Your Name" required>
-      <input type="email" id="user_email" name="user_email" placeholder="Your Email" required>
-      <button type="submit">Start Quiz</button>
-    </form>
+    <section id="resultSection" class="hidden" style="margin-top:26px">
+      <div class="card">
+        <h3 style="margin-top:0">Your Results</h3>
+        <p class="mini" id="who"></p>
+        <div class="row" style="align-items:flex-end;gap:18px">
+          <div><div class="score" id="scoreTxt">0 / 18</div><div class="mini">Correct</div></div>
+          <div><div id="bandTag" class="tag">Level</div><div class="mini" id="bandDesc"></div></div>
+        </div>
+        <details style="margin-top:14px">
+          <summary>See answer key & your choices</summary>
+          <div id="review"></div>
+        </details>
+        <div class="row" style="margin-top:16px">
+          <button id="tryAgain" class="ghost">Try again</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mini">© 2025 ESL Vocabulary Sprint. Built with ❤️ for learners.</footer>
   </div>
-
-  <!-- Quiz box -->
-  <div id="quiz-box" style="display:none;">
-    <div id="question-container"></div>
-    <div id="progress-container"><div id="progress-bar"></div></div>
-    <button id="skip-btn" onclick="skipQuestion()">Skip Question</button>
-  </div>
-
-  <!-- Result box -->
-  <div id="result" style="display:none;"></div>
-</div>
-
-<!-- EmailJS -->
-<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function(){
-    emailjs.init('KloCxkZGxIt_lIzYg'); // replace with your EmailJS public key
-  })();
-</script>
 
 <script>
-const quizData = [
-  /* YOUR EXISTING QUIZ DATA HERE (unchanged) */
+// ========= CONFIG =========
+// Replace this with your Apps Script Web App URL (steps below in the HTML comments at the end)
+const SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbypkDLzkJ1zoq2O2AbKYizYk5sA-yOMv7UvSJxIU9p9BEgCiO4vdLlY7DzE78t_2TfxqQ/exec";
+
+// ========= QUIZ DATA (18 Qs: A1 → C2) =========
+const QUIZ = [
+  // A1 (1-3)
+  {q:"Choose the best word: I ___ coffee.", level:"A1", choices:["drinks","drink","drunk","drinking"], a:1},
+  {q:"What is the opposite of 'big'?", level:"A1", choices:["tall","small","thin","short"], a:1},
+  {q:"Find the picture word: A 'book' is a…", level:"A1", choices:["animal","food","object","place"], a:2},
+  // A2 (4-6)
+  {q:"Select the correct collocation: 'make' or 'do'? ___ your homework.", level:"A2", choices:["Make","Do","Made","Doing"], a:1},
+  {q:"Closest meaning to 'start':", level:"A2", choices:["begin","finish","keep","hold"], a:0},
+  {q:"Choose the correct preposition: I'm interested ___ music.", level:"A2", choices:["for","on","in","at"], a:2},
+  // B1 (7-9)
+  {q:"Pick the best paraphrase: 'He gave up smoking.'", level:"B1", choices:["He began smoking.","He reduced smoking.","He stopped smoking.","He enjoyed smoking."], a:2},
+  {q:"A suitable word for 'basic knowledge' is:", level:"B1", choices:["expertise","awareness","familiarity","foundation"], a:3},
+  {q:"Choose the best phrasal verb: 'look ___ a word in a dictionary'", level:"B1", choices:["after","for","up","into"], a:2},
+  // B2 (10-12)
+  {q:"Nearest meaning to 'highlight' (verb):", level:"B2", choices:["ignore","emphasize","translate","remove"], a:1},
+  {q:"Best word for 'a result of something':", level:"B2", choices:["consequence","equipment","sequence","frequency"], a:0},
+  {q:"Choose the correct usage: 'She is capable ___ solving it.'", level:"B2", choices:["to","for","of","in"], a:2},
+  // C1 (13-15)
+  {q:"Closest meaning to 'meticulous':", level:"C1", choices:["careless","thorough","average","sudden"], a:1},
+  {q:"The word 'ubiquitous' most nearly means:", level:"C1", choices:["rare","everywhere","useless","limited"], a:1},
+  {q:"Pick the best collocation: 'a __ argument'", level:"C1", choices:["compelling","compelled","compel","compulsion"], a:0},
+  // C2 (16-18)
+  {q:"Nearest meaning to 'obfuscate':", level:"C2", choices:["clarify","confuse","condense","condemn"], a:1},
+  {q:"Choose the best use: 'a __ paucity of data'", level:"C2", choices:["severe","severely","sever","severity"], a:0},
+  {q:"Best synonym for 'equanimity':", level:"C2", choices:["calmness","anger","chaos","indecision"], a:0},
 ];
 
-let currentQuestion = 0;
-let score = 0;
-let userName = "";
-let userEmail = "";
+// ========= STATE =========
+let currentUser = {name:"", email:""};
 
-const infoBox = document.getElementById("info");
-const quizBox = document.getElementById("quiz-box");
-const questionContainer = document.getElementById("question-container");
-const progressBar = document.getElementById("progress-bar");
-const resultBox = document.getElementById("result");
-const userForm = document.getElementById("userForm");
+// ========= DOM =========
+const loginForm = document.getElementById('loginForm');
+const quizSection = document.getElementById('quizSection');
+const resultSection = document.getElementById('resultSection');
+const userTag = document.getElementById('userTag');
+const questionsEl = document.getElementById('questions');
+const submitBtn = document.getElementById('submitQuiz');
+const resetBtn = document.getElementById('resetQuiz');
+const backBtn = document.getElementById('backToLogin');
+const who = document.getElementById('who');
+const scoreTxt = document.getElementById('scoreTxt');
+const bandTag = document.getElementById('bandTag');
+const bandDesc = document.getElementById('bandDesc');
+const reviewEl = document.getElementById('review');
+const tryAgain = document.getElementById('tryAgain');
 
-// When user submits name/email, start quiz
-userForm.addEventListener("submit", function(e){
+// ========= HELPERS =========
+function levelBand(score){
+  // 18 questions total
+  const pct = (score/QUIZ.length)*100;
+  if(pct < 25) return {band:'A1', desc:'Starter vocabulary. Build core words.'};
+  if(pct < 40) return {band:'A2', desc:'Elementary range with gaps.'};
+  if(pct < 60) return {band:'B1', desc:'Threshold level. Growing range.'};
+  if(pct < 80) return {band:'B2', desc:'Upper‑intermediate control.'};
+  if(pct < 92) return {band:'C1', desc:'Advanced precision and breadth.'};
+  return {band:'C2', desc:'Near‑native command.'};
+}
+
+function renderQuiz(){
+  questionsEl.innerHTML = '';
+  QUIZ.forEach((item, i)=>{
+    const q = document.createElement('div');
+    q.className = 'q';
+    q.innerHTML = `<h4>${i+1}. <span class="tag ${item.level}">${item.level}</span> ${item.q}</h4>
+      <div class="choices">
+        ${item.choices.map((c,idx)=>`<label><input type="radio" name="q${i}" value="${idx}"> ${c}</label>`).join('')}
+      </div>`;
+    questionsEl.appendChild(q);
+  });
+}
+
+function getAnswers(){
+  const answers = [];
+  let score = 0;
+  QUIZ.forEach((item,i)=>{
+    const chosen = document.querySelector(`input[name="q${i}"]:checked`);
+    const val = chosen ? Number(chosen.value) : null;
+    answers.push({q:i+1, level:item.level, choice:val, correct:item.a});
+    if(val === item.a) score++;
+  });
+  return {answers, score};
+}
+
+function show(el){ el.classList.remove('hidden'); }
+function hide(el){ el.classList.add('hidden'); }
+
+// ========= EVENTS =========
+loginForm.addEventListener('submit', (e)=>{
   e.preventDefault();
-  userName = document.getElementById("user_name").value;
-  userEmail = document.getElementById("user_email").value;
-  infoBox.style.display = "none";
-  quizBox.style.display = "block";
-  loadQuestion();
+  const name = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(!name || !email){ alert('Please enter your name and a valid email.'); return; }
+  currentUser = {name, email};
+  userTag.textContent = `👤 ${name} • ${email}`;
+  renderQuiz();
+  hide(document.querySelector('.hero'));
+  show(quizSection);
 });
 
-// Load each question
-function loadQuestion() {
-  if (currentQuestion >= quizData.length) {
-    quizBox.style.display = "none";
-    showLevel();
-    return;
+backBtn.addEventListener('click', ()=>{
+  show(document.querySelector('.hero'));
+  hide(quizSection);
+});
+
+resetBtn.addEventListener('click', ()=>{
+  renderQuiz();
+});
+
+submitBtn.addEventListener('click', async ()=>{
+  const {answers, score} = getAnswers();
+  if(answers.some(a=>a.choice===null)){
+    if(!confirm('You have unanswered questions. Submit anyway?')) return;
   }
+  // Show results immediately
+  const band = levelBand(score);
+  who.textContent = `${currentUser.name} • ${currentUser.email}`;
+  scoreTxt.textContent = `${score} / ${QUIZ.length}`;
+  bandTag.textContent = band.band;
+  bandTag.className = `tag ${band.band}`;
+  bandDesc.textContent = band.desc;
+  // Review table
+  reviewEl.innerHTML = QUIZ.map((it,i)=>{
+    const a = answers[i];
+    const your = a.choice===null? '—' : it.choices[a.choice];
+    const correct = it.choices[it.a];
+    const ok = a.choice===it.a;
+    return `<div class="q" style="background:${ok?'#0e2d20':'#2a1120'};border-color:${ok?'#1d5e4a':'#60311a'}">
+      <strong>${i+1}. ${it.q}</strong><br>
+      Your answer: <span style="font-weight:700">${your}</span> ${ok?'✅':'❌'}<br>
+      Correct: <span style="font-weight:700">${correct}</span> <span class="tag ${it.level}">${it.level}</span>
+    </div>`;
+  }).join('');
+  hide(quizSection); show(resultSection);
 
-  let q = quizData[currentQuestion];
-  questionContainer.innerHTML = `
-    <div class="question">${currentQuestion + 1}. ${q.question}</div>
-    ${q.options.map((opt, i) => `<div class="option" onclick="checkAnswer(${i})">${opt}</div>`).join('')}
-  `;
-}
+  // Send to Google Sheet via Apps Script Web App
+  try{
+    if(!SHEET_WEB_APP_URL || SHEET_WEB_APP_URL.includes('PASTE_YOUR')){
+      console.warn('No Web App URL configured. Skipping submission.');
+    } else {
+      const payload = {
+        name: currentUser.name,
+        email: currentUser.email,
+        score,
+        total: QUIZ.length,
+        band: band.band,
+        answers,
+        userAgent: navigator.userAgent,
+        ts: new Date().toISOString()
+      };
+      const res = await fetch(SHEET_WEB_APP_URL, {
+        method:'POST',
+        mode:'cors',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(()=>({}));
+      if(res.ok){
+        console.log('Saved to sheet', data);
+      } else {
+        console.error('Sheet save failed', data);
+        alert('Your quiz was recorded locally, but saving to the Sheet failed.');
+      }
+    }
+  }catch(err){
+    console.error(err);
+    alert('Your quiz was recorded locally, but we could not reach the Sheet server.');
+  }
+});
 
-function checkAnswer(selected) {
-  let q = quizData[currentQuestion];
-  let options = document.querySelectorAll(".option");
-  options.forEach((btn, idx) => {
-    btn.style.pointerEvents = "none";
-    if (idx === q.correct) btn.classList.add("correct");
-    else if (idx === selected) btn.classList.add("wrong");
-  });
-  if (selected === q.correct) score++;
-  nextQuestion();
-}
-
-function skipQuestion() {
-  nextQuestion();
-}
-
-function nextQuestion() {
-  currentQuestion++;
-  progressBar.style.width = (currentQuestion / quizData.length * 100) + "%";
-  setTimeout(loadQuestion, 500);
-}
-
-// Show result and send email via EmailJS
-function showLevel() {
-  let percent = (score / quizData.length) * 100;
-  let level;
-  if (percent <= 20) level = "A1 (Beginner)";
-  else if (percent <= 40) level = "A2 (Elementary)";
-  else if (percent <= 60) level = "B1 (Intermediate)";
-  else if (percent <= 80) level = "B2 (Upper-Intermediate)";
-  else if (percent <= 90) level = "C1 (Advanced)";
-  else level = "C2 (Proficient)";
-  
-  resultBox.innerHTML = `
-    🎉 Your English level is: <strong>${level}</strong><br>
-    You answered ${score} out of ${quizData.length} questions correctly.<br><br>
-    <button onclick="restartQuiz()">Restart Quiz</button>
-  `;
-  resultBox.style.display = "block";
-
-  // Send results via EmailJS
-  emailjs.send('service_sc8bjmd', 'KloCxkZGxIt_lIzYg', {
-    user_name: userName,
-    user_email: userEmail,
-    score: score,
-    total_questions: quizData.length,
-    level: level
-  }).then(function(response) {
-    console.log('SUCCESS!', response.status, response.text);
-  }, function(error) {
-    console.log('FAILED...', error);
-  });
-}
-
-function restartQuiz() {
-  currentQuestion = 0;
-  score = 0;
-  resultBox.style.display = "none";
-  infoBox.style.display = "block";
-  progressBar.style.width = "0%";
-  document.getElementById("user_name").value = "";
-  document.getElementById("user_email").value = "";
-}
+tryAgain.addEventListener('click', ()=>{
+  renderQuiz();
+  show(quizSection); hide(resultSection);
+});
 </script>
+
 </body>
 </html>
-
