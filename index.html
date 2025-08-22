@@ -126,7 +126,7 @@
 
 <script>
 // ========= CONFIG =========
-// Replace this with your Apps Script Web App URL (steps below in the HTML comments at the end)
+// Replace this with your Apps Script Web App URL
 const SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzx4tm1cgT-_i4RWXiC8WQ5wEaZTlDA2Ei42uXmIBn_NVr90tmnUbchX0fVvHXiMtfKqg/exec";
 
 // ========= QUIZ DATA (18 Qs: A1 → C2) =========
@@ -238,9 +238,6 @@ resetBtn.addEventListener('click', ()=>{
   renderQuiz();
 });
 
-<script>
-// ...everything above stays the same...
-
 submitBtn.addEventListener('click', async () => {
   const {answers, score} = getAnswers();
   if (answers.some(a => a.choice === null)) {
@@ -303,11 +300,7 @@ tryAgain.addEventListener('click', ()=>{
   renderQuiz();
   show(quizSection); hide(resultSection);
 });
-
-// ...everything below stays the same...
 </script>
 
 </body>
 </html>
-
-
