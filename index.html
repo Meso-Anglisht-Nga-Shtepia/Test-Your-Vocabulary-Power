@@ -127,7 +127,7 @@
 <script>
 // ========= CONFIG =========
 // Replace this with your Apps Script Web App URL (steps below in the HTML comments at the end)
-const SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxdp_7gdDyBhqDJJvrKcQvM3YriRyiC7MBoowFVuACsQXlU9A4aQiljDLcngZu0Kum7hw/exec";
+const SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzx4tm1cgT-_i4RWXiC8WQ5wEaZTlDA2Ei42uXmIBn_NVr90tmnUbchX0fVvHXiMtfKqg/exec";
 
 // ========= QUIZ DATA (18 Qs: A1 → C2) =========
 const QUIZ = [
@@ -238,11 +238,15 @@ resetBtn.addEventListener('click', ()=>{
   renderQuiz();
 });
 
-submitBtn.addEventListener('click', async ()=>{
+<script>
+// ...everything above stays the same...
+
+submitBtn.addEventListener('click', async () => {
   const {answers, score} = getAnswers();
-  if(answers.some(a=>a.choice===null)){
-    if(!confirm('You have unanswered questions. Submit anyway?')) return;
+  if (answers.some(a => a.choice === null)) {
+    if (!confirm('You have unanswered questions. Submit anyway?')) return;
   }
+
   // Show results immediately
   const band = levelBand(score);
   who.textContent = `${currentUser.name} • ${currentUser.email}`;
@@ -250,10 +254,10 @@ submitBtn.addEventListener('click', async ()=>{
   bandTag.textContent = band.band;
   bandTag.className = `tag ${band.band}`;
   bandDesc.textContent = band.desc;
-  // Review table
+
   reviewEl.innerHTML = QUIZ.map((it,i)=>{
     const a = answers[i];
-    const your = a.choice===null? '—' : it.choices[a.choice];
+    const your = a.choice===null ? '—' : it.choices[a.choice];
     const correct = it.choices[it.a];
     const ok = a.choice===it.a;
     return `<div class="q" style="background:${ok?'#0e2d20':'#2a1120'};border-color:${ok?'#1d5e4a':'#60311a'}">
@@ -262,11 +266,13 @@ submitBtn.addEventListener('click', async ()=>{
       Correct: <span style="font-weight:700">${correct}</span> <span class="tag ${it.level}">${it.level}</span>
     </div>`;
   }).join('');
-  hide(quizSection); show(resultSection);
 
-  // Send to Google Sheet via Apps Script Web App
-  try{
-    if(!SHEET_WEB_APP_URL || SHEET_WEB_APP_URL.includes('PASTE_YOUR')){
+  hide(quizSection);
+  show(resultSection);
+
+  // Send to Google Sheet via Apps Script Web App (simple request → no preflight)
+  try {
+    if (!SHEET_WEB_APP_URL || SHEET_WEB_APP_URL.includes('PASTE_YOUR')) {
       console.warn('No Web App URL configured. Skipping submission.');
     } else {
       const payload = {
@@ -279,21 +285,15 @@ submitBtn.addEventListener('click', async ()=>{
         userAgent: navigator.userAgent,
         ts: new Date().toISOString()
       };
-      const res = await fetch(SHEET_WEB_APP_URL, {
-        method:'POST',
-        mode:'cors',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(payload)
+
+      await fetch(SHEET_WEB_APP_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)   // no headers, no mode
       });
-      const data = await res.json().catch(()=>({}));
-      if(res.ok){
-        console.log('Saved to sheet', data);
-      } else {
-        console.error('Sheet save failed', data);
-        alert('Your quiz was recorded locally, but saving to the Sheet failed.');
-      }
+
+      console.log('Sent to Sheet');
     }
-  }catch(err){
+  } catch (err) {
     console.error(err);
     alert('Your quiz was recorded locally, but we could not reach the Sheet server.');
   }
@@ -303,8 +303,11 @@ tryAgain.addEventListener('click', ()=>{
   renderQuiz();
   show(quizSection); hide(resultSection);
 });
+
+// ...everything below stays the same...
 </script>
 
 </body>
 </html>
+
 
